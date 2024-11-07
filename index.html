@@ -103,14 +103,23 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        user: userId, // Qui dovresti inserire il nome dell'utente che ha usato il bot
+                        user: userId,
                         result: result
                     }),
                 }).then(response => response.json())
-                  .then(data => console.log('Risultato inviato:', data));
-            }, 4000); // Aspetta 4 secondi per simulare il movimento della ruota
-        });
+                  .then(data => {
+                      console.log('Risultato inviato:', data);
+                      if (data.status === 'success') {
+                          // Aggiorna il messaggio iniziale del bot Telegram con il risultato finale
+                          fetch(`/update_message?user_id=${userId}&result=${result}`, {
+                              method: 'POST',
+                              headers: {
+                                  'Content-Type': 'application/json'
+                              }
+                          }).then(response => response.json())
+                            .then(updateData => console.log('Messaggio aggiornato:', updateData));
+                      }
+                  });
     </script>
 </body>
 </html>
-
