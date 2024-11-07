@@ -69,15 +69,20 @@
     <p id="result"></p>
 
     <script>
+        // Rileva l'ID e il nome utente dall'URL
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const userId = urlParams.get('user_id');
         const userName = urlParams.get('user_name');
+
+        // Stampa il nome dell'utente se presente
         if (userName) {
             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userName}!</p>`);
         } else {
             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao Utente!</p>`);
         }
+
+        // Aggiunge l'evento per far girare la ruota
         document.getElementById('spinButton').addEventListener('click', function() {
             const wheel = document.getElementById('wheel');
             const resultDisplay = document.getElementById('result');
@@ -86,8 +91,6 @@
             const randomRotation = Math.floor(Math.random() * 2000) + 1080;
 
             // Imposta la trasformazione per girare la ruota
-            wheel.style.transition = 'transform 4s ease-out';
-            // Reset della rotazione iniziale per garantire l'animazione visibile
             wheel.style.transform = `rotate(${randomRotation}deg)`;
 
             // Calcola il risultato una volta che la ruota si ferma
@@ -96,30 +99,25 @@
                 const result = Math.floor((randomRotation % 360) / 45) + 1;
                 resultDisplay.innerText = `La ruota si è fermata sul numero: ${result}`;
 
-                // Invio del risultato al server per Telegram, includendo il nome dell'utente
+                // Invio del risultato al server per Telegram, includendo l'ID dell'utente
                 fetch('/send_result', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        user: userId,
+                        user_id: userId,
                         result: result
                     }),
                 }).then(response => response.json())
                   .then(data => {
                       console.log('Risultato inviato:', data);
-                      if (data.status === 'success') {
-                          // Aggiorna il messaggio iniziale del bot Telegram con il risultato finale
-                          fetch(`/update_message?user_id=${userId}&result=${result}`, {
-                              method: 'POST',
-                              headers: {
-                                  'Content-Type': 'application/json'
-                              }
-                          }).then(response => response.json())
-                            .then(updateData => console.log('Messaggio aggiornato:', updateData));
-                      }
+                  })
+                  .catch(error => {
+                      console.error('Errore durante l\'invio del risultato:', error);
                   });
+            }, 4000); // Aspetta 4 secondi per simulare il movimento della ruota
+        });
     </script>
 </body>
 </html>
