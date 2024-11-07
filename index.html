@@ -59,8 +59,22 @@
             transform: translateX(-50%);
         }
     </style>
+</head>
+<body>
+    <h1>Gira la Ruota della Fortuna!</h1>
+    <div id="wheel">
+        <div class="indicator"></div>
+    </div>
+    <button id="spinButton">Gira la Ruota</button>
+    <p id="result"></p>
+
     <script>
-        function spinWheel(userId) {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const userId = urlParams.get('user_id');
+        const userName = urlParams.get('user_name');
+        document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userName}!</p>`);
+        document.getElementById('spinButton').addEventListener('click', function() {
             const wheel = document.getElementById('wheel');
             const resultDisplay = document.getElementById('result');
 
@@ -77,29 +91,20 @@
                 const result = Math.floor((randomRotation % 360) / 45) + 1;
                 resultDisplay.innerText = `La ruota si è fermata sul numero: ${result}`;
 
-                // Invio del risultato al server per Telegram
+                // Invio del risultato al server per Telegram, includendo il nome dell'utente
                 fetch('/send_result', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        user_id: userId,
+                        user: userId, // Qui dovresti inserire il nome dell'utente che ha usato il bot
                         result: result
                     }),
                 }).then(response => response.json())
                   .then(data => console.log('Risultato inviato:', data));
             }, 4000); // Aspetta 4 secondi per simulare il movimento della ruota
-        }
+        });
     </script>
-</head>
-<body>
-    <h1>Gira la Ruota della Fortuna!</h1>
-    <p>Ciao {{ user_name }}! Benvenuto al gioco della ruota.</p>
-    <div id="wheel">
-        <div class="indicator"></div>
-    </div>
-    <button id="spinButton" onclick="spinWheel({{ user_id }})">Gira la Ruota</button>
-    <p id="result"></p>
 </body>
 </html>
