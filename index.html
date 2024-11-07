@@ -86,13 +86,16 @@
                 const result = Math.floor((randomRotation % 360) / 45) + 1;
                 resultDisplay.innerText = `La ruota si è fermata sul numero: ${result}`;
 
-                // Invio del risultato al server per Telegram
+                // Invio del risultato al server per Telegram, includendo il nome dell'utente
                 fetch('/send_result', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ result: result }),
+                    body: JSON.stringify({
+                        user: 'UtenteTelegram', // Qui dovresti inserire il nome dell'utente che ha usato il bot
+                        result: result
+                    }),
                 }).then(response => response.json())
                   .then(data => console.log('Risultato inviato:', data));
             }, 4000); // Aspetta 4 secondi per simulare il movimento della ruota
@@ -100,3 +103,4 @@
     </script>
 </body>
 </html>
+
