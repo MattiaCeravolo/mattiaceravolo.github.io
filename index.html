@@ -73,7 +73,11 @@
         const urlParams = new URLSearchParams(queryString);
         const userId = urlParams.get('user_id');
         const userName = urlParams.get('user_name');
-        document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userName}!</p>`);
+        if (userName) {
+            document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userName}!</p>`);
+        } else {
+            document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao Utente!</p>`);
+        }
         document.getElementById('spinButton').addEventListener('click', function() {
             const wheel = document.getElementById('wheel');
             const resultDisplay = document.getElementById('result');
@@ -83,7 +87,7 @@
 
             // Imposta la trasformazione per girare la ruota
             wheel.style.transition = 'transform 4s ease-out';
-            wheel.style.transform = 'rotate(0deg)';
+            // Reset della rotazione iniziale per garantire l'animazione visibile
             wheel.style.transform = `rotate(${randomRotation}deg)`;
 
             // Calcola il risultato una volta che la ruota si ferma
