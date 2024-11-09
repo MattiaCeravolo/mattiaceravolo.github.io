@@ -78,14 +78,12 @@
 </head>
 <body>
     <script type="application/javascript">
-
         Telegram.WebApp.ready();
-        const urlParams = new URLSearchParams(Telegram.WebApp.initData);
+        const urlParams = new URLSearchParams(window.location.search);
         const link = urlParams.get('link');
         if (link) {
-            document.getElementById('vip-link').href = link;
+            document.getElementById('vip-link').href = decodeURIComponent(link);
         }
-        
     </script>
     
     <header>
