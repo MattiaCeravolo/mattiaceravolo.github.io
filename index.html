@@ -71,8 +71,8 @@
 
     <script type="text/javascript">
         // Rileva l'ID e il nome utente dall'URL
-        const userId = window.Telegram.WebApp.user.id;
-        const userName = window.Telegram.WebApp.user.first_name;
+        const userId = Telegram.WebApp.WebAppInitData.user.id;
+        const userName = Telegram.WebApp.WebAppInitData.user.first_name;
 
         // Stampa il nome dell'utente se presente
         if (userName) {
