@@ -55,6 +55,8 @@
             display: flex;
             justify-content: center;
             padding: 0 20px;
+            flex-direction: column;
+            align-items: center;
         }
         .link-button {
             display: inline-block;
@@ -74,16 +76,23 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
+        #vip-link-display {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #fff;
+            word-break: break-all;
+        }
     </style>
 </head>
 <body>
     <script type="application/javascript">
         Telegram.WebApp.ready();
         const urlParams = new URLSearchParams(Telegram.WebApp.initData);
-        const link = urlParams.get('vip-link');
+        const link = urlParams.get('link');
         if (link) {
             const decodedLink = decodeURIComponent(link);
             document.getElementById('vip-link').setAttribute('href', decodedLink);
+            document.getElementById('vip-link-display').innerText = decodedLink;
         }
     </script>
     
@@ -93,11 +102,11 @@
     <section id="profile">
         <img src="https://via.placeholder.com/200" alt="Profile Picture">
         <h1>Piccola Jas</h1>
-        <p>${vip-link}</p>
+        <p>Join my exclusive VIP Channel for special content!</p>
     </section>
     <section id="links">
         <a id="vip-link" href="#" class="link-button" target="_blank">Join My VIP Channel</a>
+        <p id="vip-link-display"></p>
     </section>
 </body>
 </html>
-
