@@ -73,24 +73,22 @@
 
         Telegram.WebApp.ready();
 
-        // Ottieni la stringa initData
-        const initData =Telegram.WebApp.initData;
-        
-        // Estrai i parametri in una struttura chiave-valore
-        const urlParams = new URLSearchParams(initData);
-        const params = {};
+        /// Estrae i parametri dall'URL
+        const urlParams = new URLSearchParams(Telegram.WebApp.initData);
+        const userParam = urlParams.get('user'); // Ottieni il parametro 'user' URL-encoded
     
-        // Costruisci un oggetto chiave-valore dai parametri
-        for (const [key, value] of urlParams.entries()) {
-            params[key] = value;
+        let userId = null;
+    
+        if (userParam) {
+            // Decodifica l'oggetto 'user' JSON
+            const userDecoded = decodeURIComponent(userParam);
+            const userObject = JSON.parse(userDecoded); // Converte in oggetto JSON
+            userId = userObject.id; // Ottieni l'id
         }
     
-        // Ordina le chiavi alfabeticamente
-        const sortedKeys = Object.keys(params).sort();
-    
 
-        if (sortedKeys) {
-             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${sortedKeys}!</p>`);
+        if (userId) {
+             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userId}!</p>`);
          } else {
              document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao Utente!</p>`);
          }
