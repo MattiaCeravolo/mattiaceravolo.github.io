@@ -69,12 +69,10 @@
     <button id="spinButton">Gira la Ruota</button>
     <p id="result"></p>
 
-    <script>
+    <script type="text/javascript">
         // Rileva l'ID e il nome utente dall'URL
-        const queryString = window.Telegram.WebApp.initData;
-        const urlParams = new URLSearchParams(queryString);
-        const userId = urlParams.get('user_id');
-        const userName = urlParams.get('user_name');
+        const userId = window.Telegram.WebApp.user.id;
+        const userName = window.Telegram.WebApp.user.first_name;
 
         // Stampa il nome dell'utente se presente
         if (userName) {
@@ -100,7 +98,7 @@
                 const result = Math.floor((randomRotation % 360) / 45) + 1;
                 resultDisplay.innerText = `La ruota si è fermata sul numero: ${result}`;
 
-                const data = JSON.stringify({user_id: userId.color.hexString, result: result});
+                const data = JSON.stringify({user_id: userId, result: result});
                 
                 Telegram.WebApp.ready();
                 Telegram.WebApp.sendData(data);
@@ -108,7 +106,6 @@
 
 
 
-                const data = JSON.stringify({user_id: userId.color.hexString, result: result});
                 
             }, 4000); // Aspetta 4 secondi per simulare il movimento della ruota
         });
