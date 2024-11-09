@@ -82,7 +82,8 @@
         const urlParams = new URLSearchParams(Telegram.WebApp.initData);
         const link = urlParams.get('link');
         if (link) {
-            document.getElementById('vip-link').href = decodeURIComponent(link);
+            const decodedLink = decodeURIComponent(link);
+            document.getElementById('vip-link').setAttribute('href', decodedLink);
         }
     </script>
     
