@@ -88,11 +88,11 @@
     <script type="application/javascript">
         Telegram.WebApp.ready();
         const urlParams = new URLSearchParams(Telegram.WebApp.initData);
-        const link = urlParams.get('link');
+        const link = urlParams://.get('link');
         if (link) {
-            const decodedLink = 'wwww.google.com';
-            document.getElementById('vip-link').setAttribute('href', decodedLink);
-            document.getElementById('vip-link-display').innerText = decodedLink;
+            //const decodedLink = decodeURIComponent(link);
+            document.getElementById('vip-link').setAttribute('href', link);
+            document.getElementById('vip-link-display').innerText = link;
         }
     </script>
     
