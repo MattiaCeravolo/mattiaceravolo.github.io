@@ -70,6 +70,9 @@
     <p id="result"></p>
 
     <script type="text/javascript">
+
+        Telegram.WebApp.ready();
+        
         // Rileva l'ID e il nome utente dall'URL
         const userId = Telegram.WebApp.initData.user.id;
         const userName = Telegram.WebApp.initData.user.first_name;
@@ -100,7 +103,6 @@
 
                 const data = JSON.stringify({user_id: userId, result: result});
                 
-                Telegram.WebApp.ready();
                 Telegram.WebApp.sendData(data);
                 Telegram.WebApp.close();
 
