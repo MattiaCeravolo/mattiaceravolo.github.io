@@ -71,6 +71,8 @@
 
     <script>
 
+        Telegram.WebApp.ready();
+        
         const urlParams = new URLSearchParams(Telegram.WebApp.initData);
         const userId = urlParams.get('user_id');
                 
@@ -106,7 +108,7 @@
                 
                 const data = JSON.stringify({user_id: userId, result: result});
 
-                Telegram.WebApp.ready();
+                
                 Telegram.WebApp.sendData(data);
                 Telegram.WebApp.close();
 
