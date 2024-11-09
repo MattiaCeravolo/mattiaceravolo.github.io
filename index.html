@@ -78,8 +78,8 @@
         // const userName = Telegram.WebApp.initData;
 
         // Stampa il nome dell'utente se presente
-        if (userId) {
-             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userId}!</p>`);
+        if (Telegram.WebApp.initData) {
+             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${Telegram.WebApp.initData}!</p>`);
          } else {
              document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao Utente!</p>`);
          }
