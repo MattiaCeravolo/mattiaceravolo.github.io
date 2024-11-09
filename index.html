@@ -77,11 +77,10 @@
         const userId = urlParams.get('user_id');
                 
         // Rileva l'ID e il nome utente dall'URL
-        // const userName = Telegram.WebApp.initData;
 
         // Stampa il nome dell'utente se presente
-        if (Telegram.WebApp.initData) {
-             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${Telegram.WebApp.initData}!</p>`);
+        if (userId) {
+             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${userId}!</p>`);
          } else {
              document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao Utente!</p>`);
          }
@@ -106,11 +105,11 @@
 
                 
                 
-                // const data = JSON.stringify({user_id: userId, result: result});
+                const data = JSON.stringify({user_id: userId, result: result});
 
                 
-                // Telegram.WebApp.sendData(data);
-                // Telegram.WebApp.close();
+                Telegram.WebApp.sendData(data);
+                Telegram.WebApp.close();
 
 
 
