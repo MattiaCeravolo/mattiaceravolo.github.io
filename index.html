@@ -74,8 +74,8 @@
         Telegram.WebApp.ready();
         
         // Rileva l'ID e il nome utente dall'URL
-        const userId = Telegram.WebApp.initData.user.id;
-        const userName = Telegram.WebApp.initData.user.first_name;
+        const userId = Telegram.WebApp.initData;
+        const userName = Telegram.WebApp.initData;
 
         // Stampa il nome dell'utente se presente
         if (userName) {
