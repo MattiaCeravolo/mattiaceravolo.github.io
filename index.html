@@ -82,6 +82,9 @@
         Telegram.WebApp.ready();
         const urlParams = new URLSearchParams(Telegram.WebApp.initData);
         const link = urlParams.get('link');
+        if (link) {
+            document.getElementById('vip-link').href = link;
+        }
         
     </script>
     
@@ -94,7 +97,7 @@
         <p>Join my exclusive VIP Channel for special content!</p>
     </section>
     <section id="links">
-        <a href=link class="link-button" target="_blank">Join My VIP Channel</a>
+        <a id="vip-link" href="#" class="link-button" target="_blank">Join My VIP Channel</a>
     </section>
 </body>
 </html>
