@@ -1,129 +1,78 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gioco della Ruota</title>
+    <title>Beacons Clone</title>
     <style>
         body {
-            text-align: center;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #333;
         }
-        #wheel {
-            margin: 50px auto;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            border: 10px solid #333;
-            position: relative;
-            transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
-            transform-origin: center;
-            background: conic-gradient(
-                #ff0000 0% 12.5%,
-                #ffff00 12.5% 25%,
-                #00ff00 25% 37.5%,
-                #00ffff 37.5% 50%,
-                #0000ff 50% 62.5%,
-                #ff00ff 62.5% 75%,
-                #ff8000 75% 87.5%,
-                #8000ff 87.5% 100%
-            );
-        }
-        #spinButton {
-            padding: 15px 30px;
-            font-size: 18px;
-            margin-top: 20px;
-            cursor: pointer;
-            background-color: #0088cc;
+        header {
+            background-color: #ff007f;
+            padding: 20px;
             color: white;
-            border: none;
-            border-radius: 5px;
         }
-        #spinButton:hover {
-            background-color: #005f8d;
-        }
-        #result {
-            font-size: 24px;
+        #profile {
             margin-top: 20px;
+            padding: 15px;
+            text-align: center;
         }
-        .indicator {
-            width: 0;
-            height: 0;
-            border-left: 20px solid transparent;
-            border-right: 20px solid transparent;
-            border-bottom: 20px solid #333;
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
+        #profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid #ff007f;
+        }
+        #profile h1 {
+            margin-top: 15px;
+        }
+        #links {
+            margin-top: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 20px;
+        }
+        .link-button {
+            display: inline-block;
+            width: 80%;
+            max-width: 600px;
+            padding: 15px;
+            background-color: #ff007f;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        .link-button:hover {
+            background-color: #e6006f;
         }
     </style>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <h1>Gira la Ruota della Fortuna!</h1>
-    <div id="wheel">
-        <div class="indicator"></div>
-    </div>
-    <button id="spinButton">Gira la Ruota</button>
-    <p id="result"></p>
-
-    <script type="application/javascript">
-
-        Telegram.WebApp.ready();
-
-        /// Estrae i parametri dall'URL
-        const urlParams = new URLSearchParams(Telegram.WebApp.initData);
-        const userParam = urlParams.get('user'); // Ottieni il parametro 'user' URL-encoded
-    
-        let userId = null;
-    
-        if (userParam) {
-            // Decodifica l'oggetto 'user' JSON
-            const userDecoded = decodeURIComponent(userParam);
-            const userObject = JSON.parse(userDecoded); // Converte in oggetto JSON
-            userId = userObject.id; // Ottieni l'id
-        }
-    
-
-        if (urlParams) {
-             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao ${urlParams}!</p>`);
-         } else {
-             document.querySelector('h1').insertAdjacentHTML('afterend', `<p>Ciao Utente!</p>`);
-         }
-
-        // Aggiunge l'evento per far girare la ruota
-        document.getElementById('spinButton').addEventListener('click', function() {
-            const wheel = document.getElementById('wheel');
-            const resultDisplay = document.getElementById('result');
-
-            // Genera un angolo casuale tra 2000 e 5000 gradi per simulare il movimento della ruota
-            const randomRotation = Math.floor(Math.random() * 2000) + 1080;
-
-            // Imposta la trasformazione per girare la ruota
-            wheel.style.transform = `rotate(${randomRotation}deg)`;
-
-            // Calcola il risultato una volta che la ruota si ferma
-            setTimeout(() => {
-                // Calcola il risultato basato sulla rotazione (un numero da 1 a 8, corrispondente agli 8 spicchi)
-                const result = Math.floor((randomRotation % 360) / 45) + 1;
-                resultDisplay.innerText = `La ruota si è fermata sul numero: ${result}`;
-
-
-                
-                
-                const data = JSON.stringify({user_id: userId, result: result});
-
-                
-                Telegram.WebApp.sendData(data);
-                Telegram.WebApp.close();
-
-
-
-                
-            }, 4000); // Aspetta 4 secondi per simulare il movimento della ruota
-        });
-    </script>
+    <header>
+        <h2>@piccolajas</h2>
+    </header>
+    <section id="profile">
+        <img src="https://via.placeholder.com/150" alt="Profile Picture">
+        <h1>Piccola Jas</h1>
+        <p>Content Creator, Digital Artist, and Influencer</p>
+    </section>
+    <section id="links">
+        <a href="https://www.instagram.com/piccolajas/" class="link-button" target="_blank">Follow me on Instagram</a>
+        <a href="https://www.tiktok.com/@piccolajas" class="link-button" target="_blank">Check out my TikTok</a>
+        <a href="https://www.youtube.com/channel/UCXXXXXX" class="link-button" target="_blank">Watch my YouTube Videos</a>
+        <a href="https://twitter.com/piccolajas" class="link-button" target="_blank">Follow me on Twitter</a>
+        <a href="https://www.buymeacoffee.com/piccolajas" class="link-button" target="_blank">Support my work</a>
+    </section>
 </body>
 </html>
+
