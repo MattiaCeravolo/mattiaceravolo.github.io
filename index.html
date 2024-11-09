@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>VIP Access - Piccola Jas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,6 +77,14 @@
     </style>
 </head>
 <body>
+    <script type="application/javascript">
+
+        Telegram.WebApp.ready();
+        const urlParams = new URLSearchParams(Telegram.WebApp.initData);
+        const link = urlParams.get('link');
+        
+    </script>
+    
     <header>
         VIP Access - @piccolajas
     </header>
@@ -84,7 +94,7 @@
         <p>Join my exclusive VIP Channel for special content!</p>
     </section>
     <section id="links">
-        <a href="https://t.me/+J4EtntaC5tdhMTFh" class="link-button" target="_blank">Join My VIP Channel</a>
+        <a href=link class="link-button" target="_blank">Join My VIP Channel</a>
     </section>
 </body>
 </html>
