@@ -85,6 +85,17 @@
     </style>
 </head>
 <body>
+    <script type="application/javascript">
+        Telegram.WebApp.ready();
+        const urlParams = new URLSearchParams(window.location.search);
+        const link = urlParams.get('link');
+        if (link) {
+            const decodedLink = decodeURIComponent(link);
+            const extractedLink = decodedLink;
+            document.getElementById('vip-link').setAttribute('href', extractedLink);
+            document.getElementById('vip-link-display').innerText = extractedLink;
+        }
+    </script>
     
     <header>
         VIP Access - @piccolajas
@@ -98,18 +109,5 @@
         <a id="vip-link" href="#" class="link-button" target="_blank">Join My VIP Channel</a>
         <p id="vip-link-display"></p>
     </section>
-
-    <script type="application/javascript">
-        Telegram.WebApp.ready();
-        const urlParams = new URLSearchParams(window.location.search);
-        const link = urlParams.get('link');
-        if (link) {
-            const decodedLink = decodeURIComponent(link);
-            const extractedLink = decodedLink.split('?link=')[1].split('#')[0];
-            document.getElementById('vip-link').setAttribute('href', extractedLink);
-            document.getElementById('vip-link-display').innerText = extractedLink;
-        }
-    </script>
-    
 </body>
 </html>
