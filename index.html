@@ -90,10 +90,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         const link = urlParams.get('link');
         if (link) {
-            const decodedLink = decodeURIComponent(link);
-            const extractedLink = decodedLink;
-            document.getElementById('vip-link').setAttribute('href', extractedLink);
-            document.getElementById('vip-link-display').innerText = extractedLink;
+            const extractedLink = new URL(link).searchParams.get('link');
+            if (extractedLink) {
+                document.getElementById('vip-link').setAttribute('href', extractedLink);
+                document.getElementById('vip-link-display').innerText = extractedLink;
+            }
         }
     </script>
     
@@ -110,4 +111,5 @@
         <p id="vip-link-display"></p>
     </section>
 </body>
+
 </html>
