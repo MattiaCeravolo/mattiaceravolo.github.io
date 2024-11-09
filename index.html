@@ -91,8 +91,9 @@
         const link = urlParams.get('link');
         if (link) {
             const decodedLink = decodeURIComponent(link);
-            document.getElementById('vip-link').setAttribute('href', decodedLink);
-            document.getElementById('vip-link-display').innerText = decodedLink;
+            const extractedLink = decodedLink.split('?link=')[1].split('#')[0];
+            document.getElementById('vip-link').setAttribute('href', extractedLink);
+            document.getElementById('vip-link-display').innerText = extractedLink;
         }
     </script>
     
