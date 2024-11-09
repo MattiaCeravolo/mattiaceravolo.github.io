@@ -74,7 +74,16 @@
         Telegram.WebApp.ready();
         
         const urlParams = new URLSearchParams(Telegram.WebApp.initData);
-        const userId = urlParams.get('id');
+        const userParam = urlParams.get('user'); // Ottieni il parametro 'user' URL-encoded
+    
+        let userId = null;
+    
+        if (userParam) {
+            // Decodifica l'oggetto 'user' JSON
+            const userDecoded = decodeURIComponent(userParam);
+            const userObject = JSON.parse(userDecoded); // Converte in oggetto JSON
+            userId = userObject.id; // Ottieni l'id
+        }
                 
         // Rileva l'ID e il nome utente dall'URL
 
