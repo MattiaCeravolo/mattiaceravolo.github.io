@@ -87,7 +87,7 @@
 <body>
     <script type="application/javascript">
         Telegram.WebApp.ready();
-        const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(Telegram.WebApp.initData);
         const link = urlParams.get('link');
         if (link) {
             const decodedLink = decodeURIComponent(link);
