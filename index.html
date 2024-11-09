@@ -71,10 +71,10 @@
 
     <script>
 
-        
-        
+        const urlParams = new URLSearchParams(Telegram.WebApp.initData);
+        const userId = urlParams.get('user_id');
+                
         // Rileva l'ID e il nome utente dall'URL
-        // const userId = Telegram.WebApp.initData;
         // const userName = Telegram.WebApp.initData;
 
         // Stampa il nome dell'utente se presente
@@ -101,6 +101,9 @@
                 const result = Math.floor((randomRotation % 360) / 45) + 1;
                 resultDisplay.innerText = `La ruota si è fermata sul numero: ${result}`;
 
+
+                
+                
                 const data = JSON.stringify({user_id: userId, result: result});
 
                 Telegram.WebApp.ready();
