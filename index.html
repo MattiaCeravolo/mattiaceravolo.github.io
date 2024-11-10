@@ -195,9 +195,7 @@
         if (description) {
             document.querySelector('#profile p').innerText = description;
         }
-        const urlParams = new URLSearchParams(window.location.search);
-        const link = urlParams.get('link_vip');
-        document.getElementById('vip-link').setAttribute('href', link);
+
         
         // Heart and Star Animation Script
         const createHeart = () => {
