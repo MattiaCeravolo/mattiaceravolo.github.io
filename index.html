@@ -74,17 +74,10 @@
             $2
         }
         .link-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -100%;
-            width: 150%;
-            height: 200%;
-            background: rgba(255, 215, 0, 0.3);
-            filter: blur(8px);
-            transform: skewX(-45deg) translateY(-50%);
+            $1
             transition: left 1.5s;
-            z-index: 0;
+            filter: blur(15px);
+            $2
         }
         .link-button:hover::before {
             left: 100%;
@@ -157,7 +150,7 @@
         <p>Join my exclusive VIP Channel for special content!</p>
     </section>
     <section id="links">
-        <a id="vip-link" href="#" class="link-button" target="_blank">Join My VIP Channel</a>
+        <a id="vip-link" href="#" class="link-button" target="_blank" style="font-size: 28px; font-weight: bold; text-decoration: none;">$1</a>
         <p id="vip-link-display"></p>
     </section>
 
@@ -180,25 +173,27 @@
         };
         
         document.querySelector('.link-button').addEventListener('mouseover', () => {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '90vh';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
-            
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = Math.random() * 100 + 'vw';
-            star.style.top = '90vh';
-            star.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(star);
-            setTimeout(() => {
-                star.remove();
-            }, 6000);
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '90vh';
+                heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+                
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = '90vh';
+                star.style.animationDuration = Math.random() * 2 + 3 + 's';
+                document.body.appendChild(star);
+                setTimeout(() => {
+                    star.remove();
+                }, 6000);
+            }
         });
         
         const createStar = () => {
@@ -218,3 +213,4 @@
     </script>
 </body>
 </html>
+
