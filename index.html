@@ -34,8 +34,8 @@
             text-align: center;
         }
         #profile img {
-            width: 200px;
-            height: 200px;
+            width: 122px;
+            height: 122px;
             border-radius: 50%;
             border: 5px solid #fff;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
@@ -48,6 +48,15 @@
             margin-top: 15px;
             font-size: 28px;
             font-weight: 700;
+            border: 2px solid #fff;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        #profile p {
+            font-size: 20px;
+            font-weight: 300;
             border: 2px solid #fff;
             padding: 10px;
             border-radius: 10px;
@@ -154,9 +163,9 @@
 <body>
     
     <section id="profile">
-        <img src="https://via.placeholder.com/200" alt="Profile Picture">
-        <h1>Piccola Jas</h1>
-        <p>Join my exclusive VIP Channel for special content!</p>
+        <img src="https://t.me/+Uyxqp8q73kpjMzUx/photo" alt="Profile Picture">
+        <h1>@piccolajas</h1>
+        <p>Discover exclusive content and join our community for amazing experiences!</p>
     </section>
     <section id="links">
         <a id="vip-link" href="#" class="link-button" target="_blank">Join My VIP Channel</a>
@@ -164,6 +173,28 @@
     </section>
 
     <script type="application/javascript">
+        // Reading all parameters from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const link = urlParams.get('link_vip');
+        const title = urlParams.get('title');
+        const description = urlParams.get('description');
+        const imageUrl = urlParams.get('image_url');
+
+        // Setting link for the VIP button
+        if (link) {
+            document.getElementById('vip-link').setAttribute('href', link);
+        }
+
+        // Setting profile image, title, and description dynamically
+        if (imageUrl) {
+            document.querySelector('#profile img').setAttribute('src', imageUrl);
+        }
+        if (title) {
+            document.querySelector('#profile h1').innerText = title;
+        }
+        if (description) {
+            document.querySelector('#profile p').innerText = description;
+        }
         const urlParams = new URLSearchParams(window.location.search);
         const link = urlParams.get('link_vip');
         document.getElementById('vip-link').setAttribute('href', link);
@@ -196,4 +227,5 @@
     </script>
 </body>
 </html>
+
 
