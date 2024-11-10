@@ -168,8 +168,9 @@
             width: 15px;
             height: 15px;
             transform: rotate(-45deg);
-            animation: float 10s ease-in-out infinite;
-            z-index: 1;
+            animation: disperse 8s ease-in-out forwards;
+            z-index: 0;
+            opacity: 0;
         }
         .heart {
             background: #ff007f;
@@ -195,16 +196,16 @@
             background: #ffd700;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
-        @keyframes float {
+        @keyframes disperse {
             0% {
-                transform: translate(0, 0) rotate(-45deg);
+                transform: scale(1) translate(0, 0);
+                opacity: 0;
+            }
+            10% {
                 opacity: 1;
             }
-            50% {
-                opacity: 0.6;
-            }
             100% {
-                transform: translate(0, -800px) rotate(-45deg);
+                transform: scale(2) translate(calc(200vw - 100%), calc(200vh - 100%));
                 opacity: 0;
             }
         }
@@ -250,69 +251,32 @@
         const createHeart = () => {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            const side = Math.floor(Math.random() * 4);
-            if (side === 0) {
-                heart.style.top = '0';
-                heart.style.left = Math.random() * 100 + 'vw';
-            } else if (side === 1) {
-                heart.style.bottom = '0';
-                heart.style.left = Math.random() * 100 + 'vw';
-            } else if (side === 2) {
-                heart.style.left = '0';
-                heart.style.top = Math.random() * 100 + 'vh';
-            } else {
-                heart.style.right = '0';
-                heart.style.top = Math.random() * 100 + 'vh';
-            }
-            heart.style.animationDuration = Math.random() * 4 + 6 + 's';
-            heart.style.transform = `scale(${Math.random() * 0.8 + 0.5}) rotate(${Math.random() * 360}deg)`;
+            const button = document.querySelector('.link-button');
+            const buttonRect = button.getBoundingClientRect();
+            heart.style.left = buttonRect.left + buttonRect.width / 2 + 'px';
+            heart.style.top = buttonRect.top + buttonRect.height + 'px';
             document.body.appendChild(heart);
             setTimeout(() => {
                 heart.remove();
-            }, 10000);
-            heart.animate([
-                { transform: 'translate(0, 0)', opacity: 1 },
-                { transform: `translate(calc(50vw - 50%), calc(100vh - 150px))`, opacity: 0.6 }
-            ], {
-                duration: heart.style.animationDuration * 1000,
-                easing: 'ease-in-out'
-            });
+            }, 8000);
         };
         
         const createStar = () => {
             const star = document.createElement('div');
             star.classList.add('star');
-            const side = Math.floor(Math.random() * 4);
-            if (side === 0) {
-                star.style.top = '0';
-                star.style.left = Math.random() * 100 + 'vw';
-            } else if (side === 1) {
-                star.style.bottom = '0';
-                star.style.left = Math.random() * 100 + 'vw';
-            } else if (side === 2) {
-                star.style.left = '0';
-                star.style.top = Math.random() * 100 + 'vh';
-            } else {
-                star.style.right = '0';
-                star.style.top = Math.random() * 100 + 'vh';
-            }
-            star.style.animationDuration = Math.random() * 4 + 6 + 's';
-            star.style.transform = `scale(${Math.random() * 0.8 + 0.5}) rotate(${Math.random() * 360}deg)`;
+            const button = document.querySelector('.link-button');
+            const buttonRect = button.getBoundingClientRect();
+            star.style.left = buttonRect.left + buttonRect.width / 2 + 'px';
+            star.style.top = buttonRect.top + buttonRect.height + 'px';
             document.body.appendChild(star);
             setTimeout(() => {
                 star.remove();
-            }, 10000);
-            star.animate([
-                { transform: 'translate(0, 0)', opacity: 1 },
-                { transform: `translate(calc(50vw - 50%), calc(100vh - 150px))`, opacity: 0.6 }
-            ], {
-                duration: star.style.animationDuration * 1000,
-                easing: 'ease-in-out'
-            });
+            }, 8000);
         };
 
-        setInterval(createHeart, 2000);
-        setInterval(createStar, 3000);
+        setInterval(createHeart, 3000);
+        setInterval(createStar, 4500);
     </script>
 </body>
 </html>
+
