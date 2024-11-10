@@ -30,11 +30,13 @@
         header {
             background: rgba(0, 0, 0, 0.6);
             padding: 30px;
-            color: white;
+            color: #fff;
             font-family: 'Pacifico', cursive;
-            font-size: 36px;
+            font-size: 42px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+            text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+            border: 4px solid #ffd700;
+            border-radius: 10px;
         }
         
         #profile {
@@ -44,10 +46,10 @@
             text-align: center;
         }
         #profile img {
-            width: 122px;
-            height: 122px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 5px solid #fff;
+            border: 5px solid #ffd700;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.4s ease;
         }
@@ -68,6 +70,29 @@
             transform: translate(-50%, -50%);
             z-index: -1;
         }
+        #profile h1 {
+            margin-top: 15px;
+            font-size: 36px;
+            font-weight: 700;
+            border: 4px solid #ffd700;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+        }
+        #profile p {
+            font-size: 24px;
+            font-weight: 400;
+            border: 4px solid #ffd700;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+            color: #ffd700;
+        }
         
         #links {
             display: flex;
@@ -79,11 +104,11 @@
         .link-button {
             position: relative;
             display: inline-block;
-            padding: 20px 40px;
+            padding: 25px 50px;
             background: #ff007f;
-            color: white;
+            color: #fff;
             text-decoration: none;
-            font-size: 24px;
+            font-size: 28px;
             border-radius: 50px;
             transition: all 0.4s ease;
             text-align: center;
@@ -91,6 +116,7 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             animation: pulse 2s infinite;
+            border: 4px solid #ffd700;
         }
         .link-button::before {
             content: '';
@@ -126,10 +152,11 @@
         }
         
         #vip-link-display {
-            font-size: 18px;
+            font-size: 22px;
             margin-top: 20px;
-            color: #fff;
+            color: #ffd700;
             word-break: break-all;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
         }
         
         .heart, .star {
