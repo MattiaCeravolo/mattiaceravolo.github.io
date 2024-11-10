@@ -31,18 +31,23 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 85%;
+            max-width: 500px;
+            text-align: center;
+        }
         
         header {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
             color: #fff;
             font-family: 'Pacifico', cursive;
             font-size: 32px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
             margin-bottom: 10px;
-            width: 80%;
         }
         
         #profile {
@@ -50,7 +55,6 @@
             margin-top: 20px;
             padding: 15px;
             text-align: center;
-            width: 80%;
         }
         #profile img {
             width: 120px;
@@ -77,14 +81,14 @@
             z-index: -1;
         }
 
-         #profile h1 {
+        #profile h1 {
             margin-top: 15px;
             font-size: 28px;
             font-weight: 700;
             padding: 10px;
             border-radius: 15px;
             text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
-            color: #ffd700;
+            color: #fff;
         }
         #profile p {
             font-size: 20px;
@@ -92,7 +96,7 @@
             padding: 10px;
             border-radius: 15px;
             text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
-            color: #ffd700;
+            color: #fff;
         }
         
         #links {
@@ -102,7 +106,6 @@
             align-items: center;
             padding: 0 20px;
             flex-direction: column;
-            width: 80%;
             z-index: 2;
         }
         .link-button {
@@ -158,7 +161,7 @@
         #vip-link-display {
             font-size: 18px;
             margin-top: 10px;
-            color: #ffd700;
+            color: #fff;
             word-break: break-all;
             text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
         }
@@ -212,16 +215,18 @@
     </style>
 </head>
 <body>
-    
-    <section id="profile">
-        <img src="https://t.me/+Uyxqp8q73kpjMzUx/photo" alt="Profile Picture">
-        <h1>@piccolajas</h1>
-        <p>Discover exclusive content and join our community for amazing experiences!</p>
-    </section>
-    <section id="links">
-        <a id="vip-link" href="#" class="link-button" target="_blank">Entra ora</a>
-        <p id="vip-link-display"></p>
-    </section>
+    <div class="container">
+        <header>VIP Access - Piccola Jas</header>
+        <section id="profile">
+            <img src="https://t.me/+Uyxqp8q73kpjMzUx/photo" alt="Profile Picture">
+            <h1>@piccolajas</h1>
+            <p>Discover exclusive content and join our community for amazing experiences!</p>
+        </section>
+        <section id="links">
+            <a id="vip-link" href="#" class="link-button" target="_blank">Entra ora</a>
+            <p id="vip-link-display"></p>
+        </section>
+    </div>
 
     <script type="application/javascript">
         // Reading all parameters from the URL
