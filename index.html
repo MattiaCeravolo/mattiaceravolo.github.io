@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, #ff007f, #8000ff);
+            background: linear-gradient(135deg, #ff007f, #8000ff); transition: background 5s ease-in-out;
             margin: 0;
             padding: 0;
             text-align: center;
@@ -68,19 +68,10 @@
             align-items: center;
         }
         .link-button {
+            $1overflow: hidden;
+            z-index: 2;
             position: relative;
-            display: inline-block;
-            padding: 20px 40px;
-            background: #ff007f;
-            color: white;
-            text-decoration: none;
-            font-size: 24px;
-            border-radius: 50px;
-            transition: all 0.4s ease;
-            text-align: center;
-            font-weight: bold;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            $2
         }
         .link-button::before {
             content: '';
@@ -89,10 +80,11 @@
             left: -100%;
             width: 150%;
             height: 200%;
-            background: rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.3);
+            filter: blur(8px);
             transform: skewX(-45deg) translateY(-50%);
             transition: left 1.5s;
-            z-index: 1;
+            z-index: 0;
         }
         .link-button:hover::before {
             left: 100%;
@@ -101,6 +93,7 @@
             background: #e6006f;
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            z-index: 2;
         }
         #vip-link-display {
             font-size: 18px;
@@ -115,7 +108,7 @@
             width: 15px;
             height: 15px;
             transform: rotate(-45deg);
-            animation: float 6s ease-in-out infinite;
+            animation: float 10s ease-in-out infinite;
         }
         .heart {
             background: #ff007f;
@@ -178,6 +171,7 @@
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = Math.random() * 100 + 'vh';
             heart.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(heart);
             setTimeout(() => {
@@ -185,10 +179,33 @@
             }, 6000);
         };
         
+        document.querySelector('.link-button').addEventListener('mouseover', () => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '90vh';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+            
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = '90vh';
+            star.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(star);
+            setTimeout(() => {
+                star.remove();
+            }, 6000);
+        });
+        
         const createStar = () => {
             const star = document.createElement('div');
             star.classList.add('star');
             star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
             star.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(star);
             setTimeout(() => {
@@ -196,8 +213,8 @@
             }, 6000);
         };
 
-        setInterval(createHeart, 300);
-        setInterval(createStar, 500);
+        setInterval(createHeart, 3000);
+        setInterval(createStar, 4000);
     </script>
 </body>
 </html>
