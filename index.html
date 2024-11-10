@@ -96,12 +96,14 @@
         }
         
         #links {
+            position: relative;
             display: flex;
             justify-content: center;
             padding: 0 20px;
             flex-direction: column;
             align-items: center;
             width: 80%;
+            z-index: 2;
         }
         .link-button {
             position: relative;
@@ -167,6 +169,7 @@
             height: 15px;
             transform: rotate(-45deg);
             animation: float 10s ease-in-out infinite;
+            z-index: 1;
         }
         .heart {
             background: #ff007f;
@@ -267,6 +270,13 @@
             setTimeout(() => {
                 heart.remove();
             }, 10000);
+            heart.animate([
+                { transform: 'translate(0, 0)', opacity: 1 },
+                { transform: `translate(calc(50vw - 50%), calc(100vh - 150px))`, opacity: 0.6 }
+            ], {
+                duration: heart.style.animationDuration * 1000,
+                easing: 'ease-in-out'
+            });
         };
         
         const createStar = () => {
@@ -292,6 +302,13 @@
             setTimeout(() => {
                 star.remove();
             }, 10000);
+            star.animate([
+                { transform: 'translate(0, 0)', opacity: 1 },
+                { transform: `translate(calc(50vw - 50%), calc(100vh - 150px))`, opacity: 0.6 }
+            ], {
+                duration: star.style.animationDuration * 1000,
+                easing: 'ease-in-out'
+            });
         };
 
         setInterval(createHeart, 2000);
@@ -299,4 +316,3 @@
     </script>
 </body>
 </html>
-
