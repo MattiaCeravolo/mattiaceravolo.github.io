@@ -168,7 +168,7 @@
             width: 15px;
             height: 15px;
             transform: rotate(-45deg);
-            animation: disperse 8s ease-in-out forwards;
+            animation: disperse 15s ease-in-out forwards;
             z-index: 0;
             opacity: 0;
         }
@@ -205,7 +205,7 @@
                 opacity: 1;
             }
             100% {
-                transform: scale(2) translate(calc(200vw - 100%), calc(200vh - 100%));
+                transform: scale(2) translate(calc(-200vw + 100% * var(--random-dir-x)), calc(-200vh + 100% * var(--random-dir-y)));
                 opacity: 0;
             }
         }
@@ -255,10 +255,12 @@
             const buttonRect = button.getBoundingClientRect();
             heart.style.left = buttonRect.left + buttonRect.width / 2 + 'px';
             heart.style.top = buttonRect.top + buttonRect.height + 'px';
+            heart.style.setProperty('--random-dir-x', Math.random());
+            heart.style.setProperty('--random-dir-y', Math.random());
             document.body.appendChild(heart);
             setTimeout(() => {
                 heart.remove();
-            }, 8000);
+            }, 15000);
         };
         
         const createStar = () => {
@@ -268,14 +270,16 @@
             const buttonRect = button.getBoundingClientRect();
             star.style.left = buttonRect.left + buttonRect.width / 2 + 'px';
             star.style.top = buttonRect.top + buttonRect.height + 'px';
+            star.style.setProperty('--random-dir-x', Math.random());
+            star.style.setProperty('--random-dir-y', Math.random());
             document.body.appendChild(star);
             setTimeout(() => {
                 star.remove();
-            }, 8000);
+            }, 15000);
         };
 
-        setInterval(createHeart, 3000);
-        setInterval(createStar, 4500);
+        setInterval(createHeart, 5000);
+        setInterval(createStar, 7000);
     </script>
 </body>
 </html>
