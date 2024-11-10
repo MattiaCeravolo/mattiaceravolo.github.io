@@ -87,14 +87,16 @@
             word-break: break-all;
         }
         
-        /* Heart Animation */
-        .heart {
+        /* Heart and Star Animation */
+        .heart, .star {
             position: absolute;
             width: 15px;
             height: 15px;
-            background: #ff007f;
             transform: rotate(-45deg);
             animation: float 6s ease-in-out infinite;
+        }
+        .heart {
+            background: #ff007f;
         }
         .heart::before,
         .heart::after {
@@ -112,6 +114,10 @@
         .heart::after {
             top: 0;
             left: -7.5px;
+        }
+        .star {
+            background: #ffd700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
         @keyframes float {
             0% {
@@ -147,7 +153,7 @@
         const link = urlParams.get('link_vip');
         document.getElementById('vip-link').setAttribute('href', link);
         
-        // Heart Animation Script
+        // Heart and Star Animation Script
         const createHeart = () => {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -158,7 +164,20 @@
                 heart.remove();
             }, 6000);
         };
+        
+        const createStar = () => {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(star);
+            setTimeout(() => {
+                star.remove();
+            }, 6000);
+        };
+
         setInterval(createHeart, 300);
+        setInterval(createStar, 500);
     </script>
 </body>
 </html>
