@@ -168,7 +168,7 @@
             width: 15px;
             height: 15px;
             transform: rotate(-45deg);
-            animation: disperse 15s ease-in-out forwards;
+            animation: disperse 25s ease-out forwards;
             z-index: 0;
             opacity: 0;
         }
@@ -205,7 +205,7 @@
                 opacity: 1;
             }
             100% {
-                transform: scale(2) translate(calc(-200vw + 100% * var(--random-dir-x)), calc(-200vh + 100% * var(--random-dir-y)));
+                transform: scale(3) translate(calc(500vw * var(--random-dir-x) - 250vw), calc(500vh * var(--random-dir-y) - 250vh));
                 opacity: 0;
             }
         }
@@ -260,7 +260,7 @@
             document.body.appendChild(heart);
             setTimeout(() => {
                 heart.remove();
-            }, 15000);
+            }, 25000);
         };
         
         const createStar = () => {
@@ -275,12 +275,11 @@
             document.body.appendChild(star);
             setTimeout(() => {
                 star.remove();
-            }, 15000);
+            }, 25000);
         };
 
-        setInterval(createHeart, 5000);
-        setInterval(createStar, 7000);
+        setInterval(createHeart, 1500);
+        setInterval(createStar, 1500);
     </script>
 </body>
 </html>
-
