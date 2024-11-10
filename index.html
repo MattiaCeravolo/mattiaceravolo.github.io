@@ -98,13 +98,15 @@
         <p id="vip-link-display"></p>
     </section>
 
-    <script type="application/javascript">
-        const urlParams = new URLSearchParams(window.location.search);
-        const link = urlParams.get('link_vip');
-        document.getElementById('vip-link').setAttribute('href', link);
-        
-    </script>
+    
     
 </body>
+
+<script type="application/javascript">
+    const urlParams = new URLSearchParams(window.location.search);
+    const link = urlParams.get('link_vip');
+    document.getElementById('vip-link').setAttribute('href', link);
+    
+</script>
 
 </html>
