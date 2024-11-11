@@ -269,11 +269,6 @@
         const description = urlParams.get('description');
         const imageUrl = urlParams.get('image_url');
 
-        // Setting link for the VIP button
-        if (link) {
-            document.getElementById('vip-link').setAttribute('href', link);
-        }
-
         // Setting profile image, title, and description dynamically
         if (imageUrl) {
             document.querySelector('#profile img').setAttribute('src', imageUrl);
@@ -284,74 +279,60 @@
         if (description) {
             document.querySelector('#profile p').innerText = description;
         }
-
-        
-        Telegram.WebApp.ready();
-        // Ensure initDataUnsafe and start_param are available
-        const param = Telegram.WebApp.initDataUnsafe.start_param;
-        console.warn(param);
-        
-        if (param) {
-            // Attempt to split the start_param only if it's defined
-            const parts = param.split("tgWebAppStartParam=");
-        
-            if (parts.length > 1) {
-                const start_param = parts[1]; // Extract the part after "tgWebAppStartParam="
-                console.log(start_param); // Use param as needed
-            } else {
-                console.error("Expected format not found in start_param.");
-            }
+        // Setting link for the VIP button
+        if (link) {
+            document.getElementById('vip-link').setAttribute('href', link);
         } else {
-            console.error("start_param is undefined.");
-        }
 
-        if (start_param && typeof start_param === 'string') {
-            function hexToUtf8(hex) {
-                // Ensure hex string length is even for proper byte conversion
-                if (hex.length % 2 !== 0) {
-                    console.error("Invalid hex string length");
-                    return null;
+            Telegram.WebApp.ready();
+            // Ensure initDataUnsafe and start_param are available
+            const start_param = Telegram.WebApp.initDataUnsafe.start_param;
+            console.warn(start_param);
+    
+            if (start_param && typeof start_param === 'string') {
+                function hexToUtf8(hex) {
+                    // Ensure hex string length is even for proper byte conversion
+                    if (hex.length % 2 !== 0) {
+                        console.error("Invalid hex string length");
+                        return null;
+                    }
+                    
+                    // Convert hex string to bytes
+                    const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+                    // Decode bytes to a UTF-8 string
+                    return new TextDecoder().decode(bytes);
                 }
-                
-                // Convert hex string to bytes
-                const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-                // Decode bytes to a UTF-8 string
-                return new TextDecoder().decode(bytes);
-            }
-        
-            // Decode start_param from hex
-            const param = hexToUtf8(start_param);
-            console.log(param); // This should print the decoded UTF-8 string, if valid
-        } else {
-            console.error("start_param is undefined or not a valid hex string");
-        }
-        
-        // Placeholder function to fetch data from server
-        async function fetchDataFromServer(param) {
-            // Replace `your-backend-url` with the actual endpoint that decodes start_param
-            const response = await fetch(param);
-            const data = await response.json();
-            return data;
-        }
-        
-        // Fetch parameters and update the page
-        try {
-
-            fetchDataFromServer(param).then(data => {
-                const link = data.link_vip;
-                const title = data.title;
-                const description = data.description;
-                const imageUrl = data.image_url;
             
-                // Update HTML elements with fetched data
-                document.getElementById('vip-link').setAttribute('href', link || '#');
-                document.querySelector('#profile img').setAttribute('src', imageUrl || 'https://via.placeholder.com/200');
-                document.querySelector('#profile h1').innerText = title || 'VIP Member';
-                document.querySelector('#profile p').innerText = description || 'Join for exclusive content!';
-            })
+                // Decode start_param from hex
+                const param = hexToUtf8(start_param);
+                console.log(param); // This should print the decoded UTF-8 string, if valid
+            } else {
+                console.error("start_param is undefined or not a valid hex string");
+            }
+            
+            
+                    
+            const urlParams = new URLSearchParams(param);
+            const link = urlParams.get('link_vip');
+            const title = urlParams.get('title');
+            const description = urlParams.get('description');
+            const imageUrl = urlParams.get('image_url');
+    
+            // Setting profile image, title, and description dynamically
+            if (imageUrl) {
+                document.querySelector('#profile img').setAttribute('src', imageUrl);
+            }
+            if (title) {
+                document.querySelector('#profile h1').innerText = title;
+            }
+            if (description) {
+                document.querySelector('#profile p').innerText = description;
+            }
+            // Setting link for the VIP button
+            if (link) {
+                document.getElementById('vip-link').setAttribute('href', link);
+            }
 
-        } catch (error) {
-            console.error("Unexpected error:", error);
         }
 
         // Heart and Star Animation Script
