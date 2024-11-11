@@ -288,7 +288,8 @@
         
         Telegram.WebApp.ready();
         // Ensure initDataUnsafe and start_param are available
-        const param = Telegram.WebApp.initDataUnsafe ? Telegram.WebApp.initDataUnsafe.start_param : null;
+        const param = Telegram.WebApp.initDataUnsafe.start_param;
+        console.warn(param);
         
         if (param) {
             // Attempt to split the start_param only if it's defined
