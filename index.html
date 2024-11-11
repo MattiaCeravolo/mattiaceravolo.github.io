@@ -202,9 +202,6 @@
             animation: disperse 25s ease-out forwards;
             z-index: 0;
             opacity: 0;
-            left: 50%;
-            top: 50%;
-            transform-origin: center;
         }
         .heart {
             background: #ff007f;
@@ -236,7 +233,7 @@
         
        @keyframes disperse {
             0% {
-                transform: scale(1) translate(0, 0);
+                transform: scale(1) translate(calc(20px * var(--random-dir-x) - 100px), calc(10px * var(--random-dir-y) - 100px));
                 opacity: 0;
             }
             10% {
