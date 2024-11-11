@@ -266,7 +266,7 @@
         const initData = Telegram.WebApp.initDataUnsafe;
         
         function updateProfileDetails() {
-            const linkVip = initData.query_id;  // Fetch the link identifier or any required data from initData
+            const linkVip = initData;  // Fetch the link identifier or any required data from initData
             const title = initData.user?.username || "VIP Member";  // Default title if username is unavailable
             const description = initData.user?.bio || "Join for exclusive content!";
             const imageUrl = initData.user?.photo_url || "https://via.placeholder.com/200";
