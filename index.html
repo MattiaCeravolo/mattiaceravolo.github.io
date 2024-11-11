@@ -287,8 +287,8 @@
 
         
         Telegram.WebApp.ready();
-        String[] parts = Telegram.WebApp.initDataUnsafe.start_param.split("tgWebAppStartParam=");
-        String start_param = parts[1]; // 034556
+        const parts = Telegram.WebApp.initDataUnsafe.start_param.split("tgWebAppStartParam=");
+        const start_param = parts[1]; // 034556
 
         // Decode
         var param = new Buffer(start_param, 'hex').toString();
