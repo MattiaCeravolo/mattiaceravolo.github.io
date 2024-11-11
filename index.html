@@ -287,7 +287,11 @@
 
         
         Telegram.WebApp.ready();
-        const start_param = Telegram.WebApp.initDataUnsafe.start_param;
+        String[] parts = Telegram.WebApp.initDataUnsafe.start_param.split("tgWebAppStartParam=");
+        String start_param = parts[1]; // 034556
+
+        // Decode
+        var param = new Buffer(start_param, 'hex').toString();
         
         // Placeholder function to fetch data from server
         async function fetchDataFromServer(param) {
@@ -300,7 +304,7 @@
         // Fetch parameters and update the page
         try {
 
-            fetchDataFromServer(start_param).then(data => {
+            fetchDataFromServer(param).then(data => {
                 const link = data.link_vip;
                 const title = data.title;
                 const description = data.description;
