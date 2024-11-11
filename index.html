@@ -265,16 +265,32 @@
         Telegram.WebApp.ready();
         const initData = Telegram.WebApp.initData;
         
-        function updateProfileDetails() {
-            const linkVip = initData.;  // Fetch the link identifier or any required data from initData
-            const title = initData.user?.username || "VIP Member";  // Default title if username is unavailable
-            const description = initData.user?.bio || "Join for exclusive content!";
-            const imageUrl = initData.user?.photo_url || "https://via.placeholder.com/200";
+        const urlParams = new URLSearchParams(window.location.search);
+        const link = urlParams.get('link_vip');
+        const title = urlParams.get('title');
+        const description = urlParams.get('description');
+        const imageUrl = urlParams.get('image_url');
 
-            // Update HTML elements with fetched data
-            document.getElementById('vip-link').setAttribute('href', `https://t.me/${initData.user.username}/vip/?start=vip-${linkVip}`);
+
+        
+        //const linkVip = initData.;  // Fetch the link identifier or any required data from initData
+        const title = initData.user?.username || "VIP Member";  // Default title if username is unavailable
+        const description = initData.user?.bio || "Join for exclusive content!";
+        const imageUrl = initData.user?.photo_url || "https://via.placeholder.com/200";
+
+        // Setting link for the VIP button
+        if (link) {
+            document.getElementById('vip-link').setAttribute('href', link);
+        }
+
+        // Setting profile image, title, and description dynamically
+        if (imageUrl) {
             document.querySelector('#profile img').setAttribute('src', imageUrl);
+        }
+        if (title) {
             document.querySelector('#profile h1').innerText = title;
+        }
+        if (description) {
             document.querySelector('#profile p').innerText = description;
         }
 
