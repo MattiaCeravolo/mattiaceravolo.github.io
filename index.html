@@ -290,8 +290,15 @@
         const parts = Telegram.WebApp.initDataUnsafe.start_param.split("tgWebAppStartParam=");
         const start_param = parts[1]; // 034556
 
+        function hexToUtf8(hex) {
+            // Convert hex string to bytes
+            const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+            // Decode bytes to a UTF-8 string
+            return new TextDecoder().decode(bytes);
+        }
+        
         // Decode
-        var param = new Buffer(start_param, 'hex').toString();
+       const param = hexToUtf8(start_param);
         
         // Placeholder function to fetch data from server
         async function fetchDataFromServer(param) {
