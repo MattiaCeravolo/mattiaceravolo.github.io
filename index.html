@@ -290,15 +290,26 @@
         const parts = Telegram.WebApp.initDataUnsafe.start_param.split("tgWebAppStartParam=");
         const start_param = parts[1]; // 034556
 
-        function hexToUtf8(hex) {
-            // Convert hex string to bytes
-            const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-            // Decode bytes to a UTF-8 string
-            return new TextDecoder().decode(bytes);
-        }
+        if (start_param && typeof start_param === 'string') {
+            function hexToUtf8(hex) {
+                // Ensure hex string length is even for proper byte conversion
+                if (hex.length % 2 !== 0) {
+                    console.error("Invalid hex string length");
+                    return null;
+                }
+                
+                // Convert hex string to bytes
+                const bytes = new Uint8Array(hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+                // Decode bytes to a UTF-8 string
+                return new TextDecoder().decode(bytes);
+            }
         
-        // Decode
-       const param = hexToUtf8(start_param);
+            // Decode start_param from hex
+            const param = hexToUtf8(start_param);
+            console.log(param); // This should print the decoded UTF-8 string, if valid
+        } else {
+            console.error("start_param is undefined or not a valid hex string");
+        }
         
         // Placeholder function to fetch data from server
         async function fetchDataFromServer(param) {
