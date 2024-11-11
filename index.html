@@ -262,29 +262,18 @@
     <script>
         // Reading all parameters from the URL
         // Initialize Telegram WebApp
-        Telegram.WebApp.ready();
-        const start_param = Telegram.WebApp.initDataUnsafe.start_param;
-        
-        //const link = urlParams.get('link_vip');
-        //const title = urlParams.get('title');
-        //const description = urlParams.get('description');
-        //const imageUrl = urlParams.get('image_url');
 
-
-        
-        // Reading all parameters from the URL
-        //const urlParams = new URLSearchParams(window.location.search);
-        const urlParams = new URLSearchParams(start_param);
-        
+        const urlParams = new URLSearchParams(window.location.search);
         const link = urlParams.get('link_vip');
-        const title = decodeURIComponent(urlParams.get('title'));
-        const description = decodeURIComponent(urlParams.get('description'));
+        const title = urlParams.get('title');
+        const description = urlParams.get('description');
         const imageUrl = urlParams.get('image_url');
 
         // Setting link for the VIP button
         if (link) {
-            document.getElementById('vip-link').setAttribute('href', start_param);
+            document.getElementById('vip-link').setAttribute('href', link);
         }
+
         // Setting profile image, title, and description dynamically
         if (imageUrl) {
             document.querySelector('#profile img').setAttribute('src', imageUrl);
@@ -295,6 +284,34 @@
         if (description) {
             document.querySelector('#profile p').innerText = description;
         }
+
+        
+        Telegram.WebApp.ready();
+        const start_param = Telegram.WebApp.initDataUnsafe.start_param;
+        
+        // Placeholder function to fetch data from server
+        async function fetchDataFromServer(param) {
+            // Replace `your-backend-url` with the actual endpoint that decodes start_param
+            const response = await fetch(param);
+            const data = await response.json();
+            return data;
+        }
+        
+        // Fetch parameters and update the page
+        fetchDataFromServer(start_param).then(data => {
+            const link = data.link_vip;
+            const title = data.title;
+            const description = data.description;
+            const imageUrl = data.image_url;
+        
+            // Update HTML elements with fetched data
+            document.getElementById('vip-link').setAttribute('href', link || '#');
+            document.querySelector('#profile img').setAttribute('src', imageUrl || 'https://via.placeholder.com/200');
+            document.querySelector('#profile h1').innerText = title || 'VIP Member';
+            document.querySelector('#profile p').innerText = description || 'Join for exclusive content!';
+        }).catch(error => {
+            console.error("Error fetching data from server:", error);
+        });
 
         // Heart and Star Animation Script
         const createHeart = () => {
