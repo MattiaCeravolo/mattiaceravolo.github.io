@@ -196,10 +196,10 @@
         
         .heart, .star {
             position: absolute;
-            width: 15px;
-            height: 15px;
+            width: 5px;
+            height: 5px;
             transform: rotate(-45deg);
-            animation: disperse 25s ease-out forwards;
+            animation: disperse 60s ease-out forwards;
             z-index: 0;
             opacity: 0;
         }
@@ -231,16 +231,16 @@
         }
 
         
-       @keyframes disperse {
+        @keyframes disperse {
             0% {
-                transform: scale(1) translate(0, 0);
+                transform: scale(1) translate(calc(10vw * var(--random-dir-x) - 5vw), calc(5vh * var(--random-dir-y) - 2vh)) rotate(0deg);
                 opacity: 0;
             }
             10% {
                 opacity: 1;
             }
             100% {
-                transform: scale(3) translate(calc(200px * var(--random-dir-x) - 100px), calc(200px * var(--random-dir-y) - 100px));
+                transform: scale(3) translate(calc(50vw * var(--random-dir-x) - 25vw), calc(50vh * var(--random-dir-y) - 25vh)) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -319,5 +319,3 @@
     </script>
 </body>
 </html>
-
-
