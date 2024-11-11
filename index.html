@@ -305,32 +305,29 @@
             
                 // Decode start_param from hex
                 const param = hexToUtf8(start_param);
-                console.log(param); // This should print the decoded UTF-8 string, if valid
+                console.warn(param); // This should print the decoded UTF-8 string, if valid
+                const urlParams = new URLSearchParams(param);
+                const link = urlParams.get('link_vip');
+                const title = urlParams.get('title');
+                const description = urlParams.get('description');
+                const imageUrl = urlParams.get('image_url');
+        
+                // Setting profile image, title, and description dynamically
+                if (imageUrl) {
+                    document.querySelector('#profile img').setAttribute('src', imageUrl);
+                }
+                if (title) {
+                    document.querySelector('#profile h1').innerText = title;
+                }
+                if (description) {
+                    document.querySelector('#profile p').innerText = description;
+                }
+                // Setting link for the VIP button
+                if (link) {
+                    document.getElementById('vip-link').setAttribute('href', link);
+                }
             } else {
                 console.error("start_param is undefined or not a valid hex string");
-            }
-            
-            
-                    
-            const urlParams = new URLSearchParams(param);
-            const link = urlParams.get('link_vip');
-            const title = urlParams.get('title');
-            const description = urlParams.get('description');
-            const imageUrl = urlParams.get('image_url');
-    
-            // Setting profile image, title, and description dynamically
-            if (imageUrl) {
-                document.querySelector('#profile img').setAttribute('src', imageUrl);
-            }
-            if (title) {
-                document.querySelector('#profile h1').innerText = title;
-            }
-            if (description) {
-                document.querySelector('#profile p').innerText = description;
-            }
-            // Setting link for the VIP button
-            if (link) {
-                document.getElementById('vip-link').setAttribute('href', link);
             }
 
         }
