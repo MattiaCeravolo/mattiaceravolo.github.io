@@ -263,10 +263,10 @@
         // Reading all parameters from the URL
         // Initialize Telegram WebApp
         Telegram.WebApp.ready();
-        const initData = Telegram.WebApp.initDataUnsafe;
+        const initData = Telegram.WebApp.initData;
         
         function updateProfileDetails() {
-            const linkVip = initData;  // Fetch the link identifier or any required data from initData
+            const linkVip = initData.;  // Fetch the link identifier or any required data from initData
             const title = initData.user?.username || "VIP Member";  // Default title if username is unavailable
             const description = initData.user?.bio || "Join for exclusive content!";
             const imageUrl = initData.user?.photo_url || "https://via.placeholder.com/200";
