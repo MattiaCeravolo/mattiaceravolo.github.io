@@ -265,7 +265,6 @@
         Telegram.WebApp.ready();
         const start_param = Telegram.WebApp.initDataUnsafe.start_param;
         
-        const urlParams = new URLSearchParams(start_param);
         //const link = urlParams.get('link_vip');
         //const title = urlParams.get('title');
         //const description = urlParams.get('description');
@@ -275,9 +274,11 @@
         
         // Reading all parameters from the URL
         //const urlParams = new URLSearchParams(window.location.search);
+        const urlParams = new URLSearchParams(start_param);
+        
         const link = urlParams.get('link_vip');
-        const title = urlParams.get('title');
-        const description = urlParams.get('description');
+        const title = decodeURIComponent(urlParams.get('title'));
+        const description = decodeURIComponent(urlParams.get('description'));
         const imageUrl = urlParams.get('image_url');
 
         // Setting link for the VIP button
