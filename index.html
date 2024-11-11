@@ -287,8 +287,22 @@
 
         
         Telegram.WebApp.ready();
-        const parts = Telegram.WebApp.initDataUnsafe.start_param.split("tgWebAppStartParam=");
-        const start_param = parts[1]; // 034556
+        // Ensure initDataUnsafe and start_param are available
+        const param = Telegram.WebApp.initDataUnsafe ? Telegram.WebApp.initDataUnsafe.start_param : null;
+        
+        if (param) {
+            // Attempt to split the start_param only if it's defined
+            const parts = param.split("tgWebAppStartParam=");
+        
+            if (parts.length > 1) {
+                const start_param = parts[1]; // Extract the part after "tgWebAppStartParam="
+                console.log(start_param); // Use param as needed
+            } else {
+                console.error("Expected format not found in start_param.");
+            }
+        } else {
+            console.error("start_param is undefined.");
+        }
 
         if (start_param && typeof start_param === 'string') {
             function hexToUtf8(hex) {
