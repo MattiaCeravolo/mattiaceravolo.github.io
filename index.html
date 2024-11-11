@@ -308,9 +308,13 @@
                 console.warn(param); // This should print the decoded UTF-8 string, if valid
                 const urlParams = new URLSearchParams(param);
                 const link = urlParams.get('link_vip');
+                console.warn(link);
                 const title = urlParams.get('title');
+                console.warn(title);
                 const description = urlParams.get('description');
+                console.warn(description);
                 const imageUrl = urlParams.get('image_url');
+                console.warn(imageUrl);
         
                 // Setting profile image, title, and description dynamically
                 if (imageUrl) {
