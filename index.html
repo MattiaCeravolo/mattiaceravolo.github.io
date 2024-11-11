@@ -155,11 +155,22 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
-        .link-button svg {
-            margin-left: 10px;
+        .star-3d {
             width: 20px;
             height: 20px;
-            fill: #fff;
+            background: #ffd700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: bounceRotate 2s infinite ease-in-out;
+            margin-left: 10px;
+        }
+
+        @keyframes bounceRotate {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
         }
 
         @keyframes pulse {
@@ -171,23 +182,6 @@
             }
             100% {
                 transform: scale(1);
-            }
-        }
-        
-        .star-3d {
-            width: 30px;
-            height: 30px;
-            background: #ffd700;
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            animation: bounceRotate 2s infinite ease-in-out;
-        }
-
-        @keyframes bounceRotate {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
             }
         }
         
@@ -251,14 +245,11 @@
     <div class="container">
         <section id="profile">
             <img src="https://t.me/+Uyxqp8q73kpjMzUx/photo" alt="Profile Picture">
+            <h1>@piccolajas</h1>
+            <p>Discover exclusive content and join our community for amazing experiences!</p>
         </section>
         <section id="links">
-            <div class="link-container">
-                <a id="vip-link" href="#" class="link-button">Entra ora
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.59V16a1 1 0 0 0-2 0v.59A1.5 1.5 0 0 1 10 15.5a1.5 1.5 0 0 1 3 0 1.5 1.5 0 0 1-2 1.09zM13 12V7a1 1 0 0 0-2 0v5a1 1 0 0 0 2 0z"/></svg>
-                </a>
-                <div class="star-3d"></div>
-            </div>
+            <a id="vip-link" href="#" class="link-button">Entra ora <div class="star-3d"></div></a>
             <p id="vip-link-display"></p>
         </section>
     </div>
@@ -286,7 +277,42 @@
         if (description) {
             document.querySelector('#profile p').innerText = description;
         }
+
+        // Heart and Star Animation Script
+        const createHeart = () => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            const button = document.querySelector('.link-button');
+            const buttonRect = button.getBoundingClientRect();
+            heart.style.left = buttonRect.left + buttonRect.width / 2 + 'px';
+            heart.style.top = buttonRect.top + buttonRect.height + 'px';
+            heart.style.setProperty('--random-dir-x', Math.random());
+            heart.style.setProperty('--random-dir-y', Math.random());
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 25000);
+        };
+        
+        const createStar = () => {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const button = document.querySelector('.link-button');
+            const buttonRect = button.getBoundingClientRect();
+            star.style.left = buttonRect.left + buttonRect.width / 2 + 'px';
+            star.style.top = buttonRect.top + buttonRect.height + 'px';
+            star.style.setProperty('--random-dir-x', Math.random());
+            star.style.setProperty('--random-dir-y', Math.random());
+            document.body.appendChild(star);
+            setTimeout(() => {
+                star.remove();
+            }, 25000);
+        };
+
+        setInterval(createHeart, 500);
+        setInterval(createStar, 500);
     </script>
 </body>
 </html>
+
 
