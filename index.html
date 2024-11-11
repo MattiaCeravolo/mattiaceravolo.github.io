@@ -298,20 +298,25 @@
         }
         
         // Fetch parameters and update the page
-        fetchDataFromServer(start_param).then(data => {
-            const link = data.link_vip;
-            const title = data.title;
-            const description = data.description;
-            const imageUrl = data.image_url;
-        
-            // Update HTML elements with fetched data
-            document.getElementById('vip-link').setAttribute('href', link || '#');
-            document.querySelector('#profile img').setAttribute('src', imageUrl || 'https://via.placeholder.com/200');
-            document.querySelector('#profile h1').innerText = title || 'VIP Member';
-            document.querySelector('#profile p').innerText = description || 'Join for exclusive content!';
-        }).catch(error => {
-            console.error("Error fetching data from server:", error);
-        });
+        try {
+
+            fetchDataFromServer(start_param).then(data => {
+                const link = data.link_vip;
+                const title = data.title;
+                const description = data.description;
+                const imageUrl = data.image_url;
+            
+                // Update HTML elements with fetched data
+                document.getElementById('vip-link').setAttribute('href', link || '#');
+                document.querySelector('#profile img').setAttribute('src', imageUrl || 'https://via.placeholder.com/200');
+                document.querySelector('#profile h1').innerText = title || 'VIP Member';
+                document.querySelector('#profile p').innerText = description || 'Join for exclusive content!';
+            }).catch(error => {
+                console.error("Error fetching data from server:", error);
+            });
+
+        } catch (Exception e) {
+            System.out.println("Something went wrong.");
 
         // Heart and Star Animation Script
         const createHeart = () => {
