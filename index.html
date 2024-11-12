@@ -163,6 +163,14 @@
             animation: bounceRotate 6s infinite ease-in-out;
             margin-left: 10px;
         }
+        .message-3d {
+            width: 30px;
+            height: 30px;
+            background-image: url('https://cf-vectorizer-live.s3.amazonaws.com/users/…nEVoW0/thumbnails/2okhkLkQRfIDQ26hZ1LD81XCyYf.png')
+            background-size: cover; /* Assicura che l'immagine si adatti bene */
+            animation: bounceRotate 12s infinite ease-in-out;
+            margin-left: 10px;
+        }
 
         @keyframes bounceRotate {
             0%, 100% {
@@ -255,6 +263,7 @@
         </section>
         <section id="links">
             <a id="vip-link" href="#" class="link-button">Entra ora <div class="star-3d"></div></a>
+            <a id="chat-now-link" href="#" class="link-button" style="display: none; margin-top: 10px;">Chatta ora <div class="message-3d"></div></a>
             <p id="vip-link-display"></p>
         </section>
     </div>
@@ -268,6 +277,7 @@
         const title = urlParams.get('title');
         const description = urlParams.get('description');
         const imageUrl = urlParams.get('image_url');
+        const username = urlParams.get('username');
 
         // Setting profile image, title, and description dynamically
         if (imageUrl) {
@@ -278,6 +288,9 @@
         }
         if (description) {
             document.querySelector('#profile p').innerText = description;
+        }
+        if (username) {
+            document.getElementById('chat-now-link').setAttribute('href', username);
         }
         // Setting link for the VIP button
         if (link) {
@@ -315,6 +328,8 @@
                 console.warn(description);
                 const imageUrl = urlParams.get('image_url');
                 console.warn(imageUrl);
+                const username = urlParams.get('username');
+                console.warn(username);
         
                 // Setting profile image, title, and description dynamically
                 if (imageUrl) {
@@ -325,6 +340,9 @@
                 }
                 if (description) {
                     document.querySelector('#profile p').innerText = description;
+                }
+                if (username) {
+                    document.getElementById('chat-now-link').setAttribute('href', username);
                 }
                 // Setting link for the VIP button
                 if (link) {
