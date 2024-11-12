@@ -155,6 +155,45 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
+        .chat-button {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ff007f;
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 150%;
+            height: 200%;
+            background: rgba(255, 215, 0, 0.5);
+            transform: skewX(-45deg) translateY(-50%);
+            transition: left 1.5s;
+            z-index: -1;
+        }
+        .chat-button:hover::before {
+            left: 100%;
+        }
+        .chat-button:hover {
+            background: #e6006f;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            animation: pulse 2s infinite;
+        }
         .star-3d {
             width: 30px;
             height: 30px;
@@ -200,6 +239,13 @@
             color: #fff;
             word-break: break-all;
             text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        #chat-now-display {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #fff;
+            word-break: break-all;
         }
         
         .heart, .star {
@@ -263,7 +309,7 @@
         </section>
         <section id="links">
             <a id="vip-link" href="#" class="link-button">Entra ora <div class="star-3d"></div></a>
-            <a id="chat-now-link" href="#" class="link-button">Chatta ora <div class="message-3d"></div></a>
+            <a id="chat-now-link" href="#" class="chat-button">Chatta ora <div class="message-3d"></div></a>
             <p id="vip-link-display"></p>
         </section>
     </div>
